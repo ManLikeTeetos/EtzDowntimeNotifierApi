@@ -11,6 +11,12 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
+   @PostMapping("/register")
+    public String register(@RequestBody LoginRequest request) {
+        boolean registered = userService.registerUser(request.getEmail(), request.getPassword());
+        return registered ? "Registration Successful" : "Registration Failed";
+    }
+
     @PostMapping("/signin")
     public String signIn(@RequestBody LoginRequest request) {
         boolean authenticated = userService.authenticate(request.getEmail(), request.getPassword());
