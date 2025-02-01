@@ -23,6 +23,7 @@ public class ReasonController {
 
     @PostMapping
     public ResponseEntity<Reason> addReason(@RequestBody Reason reason) {
-        return ResponseEntity.ok(reasonRepository.save(reason));
+        reasonRepository.save(reason);
+        return ResponseEntity.ok(new ResponseMessage("Reason entered successfully"));
     }
 }

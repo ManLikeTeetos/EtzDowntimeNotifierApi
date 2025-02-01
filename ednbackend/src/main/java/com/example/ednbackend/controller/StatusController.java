@@ -23,6 +23,7 @@ public class StatusController {
 
     @PostMapping
     public ResponseEntity<Status> addStatus(@RequestBody Status status) {
-        return ResponseEntity.ok(statusRepository.save(status));
+        statusRepository.save(status);
+        return ResponseEntity.ok(new ResponseMessage("Status entered successfully"));
     }
 }

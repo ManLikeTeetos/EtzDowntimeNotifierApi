@@ -23,6 +23,7 @@ public class BankController {
 
     @PostMapping
     public ResponseEntity<Bank> addBank(@RequestBody Bank bank) {
-        return ResponseEntity.ok(bankRepository.save(bank));
+            bankRepository.save(bank);
+            return ResponseEntity.ok(new ResponseMessage("Bank entered successfully"));
     }
 }
