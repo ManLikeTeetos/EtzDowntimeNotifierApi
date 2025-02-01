@@ -8,11 +8,12 @@ public class Reason {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
     private String message;
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    // public Long getId() { return id; }
+    // public void setId(Long id) { this.id = id; }
 
-    public String getMessage() { return message; }
-    public void setMessage(String message) { this.message = message; }
+    // public String getMessage() { return message; }
+    // public void setMessage(String message) { this.message = message; }
 }
