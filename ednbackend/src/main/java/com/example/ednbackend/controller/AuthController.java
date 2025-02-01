@@ -22,7 +22,7 @@ public class AuthController {
         if (registered) {
             return new ResponseMessage("Registration Successful");
         } else {
-            return new ResponseMessage("Registration Failed");
+            return new ResponseMessage("User Already Exist");
         }
     }
 
