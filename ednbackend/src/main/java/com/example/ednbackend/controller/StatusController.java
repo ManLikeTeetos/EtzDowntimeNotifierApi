@@ -1,7 +1,7 @@
-package com.example.controller;
+package com.example.ednbackend.controller;
 
-import com.example.models.Status;
-import com.example.repository.StatusRepository;
+import com.example.ednbackend.models.Status;
+import com.example.ednbackend.repository.StatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

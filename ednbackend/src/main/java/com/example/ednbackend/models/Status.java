@@ -2,6 +2,7 @@ package com.example.ednbackend.models;
 
 import jakarta.persistence.*;
 
+@Entity
 public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

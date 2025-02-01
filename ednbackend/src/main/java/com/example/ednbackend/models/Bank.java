@@ -4,6 +4,7 @@ import javax.annotation.processing.Generated;
 
 import jakarta.persistence.*;
 
+@Entity
 public class Bank {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,7 +1,7 @@
-package com.example.controller;
+package com.example.ednbackend.controller;
 
-import com.example.models.Bank;
-import com.example.repository.BankRepository;
+import com.example.ednbackend.models.Bank;
+import com.example.ednbackend.repository.BankRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

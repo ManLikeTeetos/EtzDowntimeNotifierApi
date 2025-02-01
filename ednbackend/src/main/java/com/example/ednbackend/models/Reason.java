@@ -1,4 +1,4 @@
-package com.example.model;
+package com.example.ednbackend.models;
 
 import jakarta.persistence.*;
 
