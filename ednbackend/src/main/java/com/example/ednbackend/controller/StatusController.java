@@ -2,10 +2,11 @@ package com.example.ednbackend.controller;
 
 import com.example.ednbackend.models.Status;
 import com.example.ednbackend.repository.StatusRepository;
+import com.example.ednbackend.dto.ResponseMessage;  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.ednbackend.dto.ResponseMessage;  
+
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class StatusController {
     }
 
     @PostMapping
-    public ResponseEntity<Status> addStatus(@RequestBody Status status) {
+    public ResponseEntity<ResponseMessage> addStatus(@RequestBody Status status) {
         statusRepository.save(status);
         return ResponseEntity.ok(new ResponseMessage("Status entered successfully"));
     }

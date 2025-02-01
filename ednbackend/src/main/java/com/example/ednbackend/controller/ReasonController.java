@@ -2,10 +2,11 @@ package com.example.ednbackend.controller;
 
 import com.example.ednbackend.models.Reason;
 import com.example.ednbackend.repository.ReasonRepository;
+import com.example.ednbackend.dto.ResponseMessage;  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.ednbackend.dto.ResponseMessage;  
+
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ReasonController {
     }
 
     @PostMapping
-    public ResponseEntity<Reason> addReason(@RequestBody Reason reason) {
+    public ResponseEntity<ResponseMessage> addReason(@RequestBody Reason reason) {
         reasonRepository.save(reason);
         return ResponseEntity.ok(new ResponseMessage("Reason entered successfully"));
     }

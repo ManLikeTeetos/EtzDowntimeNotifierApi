@@ -2,10 +2,11 @@ package com.example.ednbackend.controller;
 
 import com.example.ednbackend.models.Bank;
 import com.example.ednbackend.repository.BankRepository;
+import com.example.ednbackend.dto.ResponseMessage;  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.ednbackend.dto.ResponseMessage;  
+
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class BankController {
     }
 
     @PostMapping
-    public ResponseEntity<Bank> addBank(@RequestBody Bank bank) {
+    public ResponseEntity<ResponseMessage> addBank(@RequestBody Bank bank) {
             bankRepository.save(bank);
             return ResponseEntity.ok(new ResponseMessage("Bank entered successfully"));
     }
