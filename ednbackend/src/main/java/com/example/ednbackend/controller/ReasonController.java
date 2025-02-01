@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.model.Reason;
+import com.example.models.Reason;
 import com.example.repository.ReasonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

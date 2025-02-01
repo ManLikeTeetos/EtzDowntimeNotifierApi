@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.model.Bank;
+import com.example.models.Bank;
 import com.example.repository.BankRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

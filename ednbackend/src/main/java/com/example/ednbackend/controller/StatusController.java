@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.model.Status;
+import com.example.models.Status;
 import com.example.repository.StatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
