@@ -12,12 +12,7 @@ public class SecurityConfig {
         http
             .csrf().disable()
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/signin", 
-                "/auth/register", 
-                "/api/banks", 
-                "/api/status", 
-                "/api/reasons",
-                "/api/bank-status").permitAll() // ✅ Allow login without authentication
+            .requestMatchers("/**").permitAll()
                 .anyRequest().authenticated()
             );
         return http.build();
