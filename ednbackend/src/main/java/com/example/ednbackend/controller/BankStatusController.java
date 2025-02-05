@@ -6,7 +6,7 @@ import com.example.ednbackend.service.BankStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.time.*;
 import java.util.List;
 
 @RestController
@@ -43,6 +43,16 @@ public class BankStatusController {
         LocalDateTime end = LocalDateTime.parse(endDate);
         return bankStatusService.getBankStatusesByDateRange(bankname, start, end);
     }
+
+@GetMapping("/{bankname}/latest")
+public BankStatus getLatestBankStatus(@PathVariable String bankname) {
+    LocalDate today = LocalDate.now();
+    LocalDateTime startOfDay = today.atStartOfDay();
+    LocalDateTime endOfDay = today.atTime(LocalTime.MAX);
+
+    return bankStatusService.getLatestBankStatus(bankname, startOfDay, endOfDay);
+}
+
 
     // Delete a bank status entry by ID
     @DeleteMapping("/{id}")
