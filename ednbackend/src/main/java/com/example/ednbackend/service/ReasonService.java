@@ -1,7 +1,6 @@
 package com.example.ednbackend.service;
 
 import com.example.ednbackend.models.Reason;
-import com.example.ednbackend.repository.BankRepository;
 import com.example.ednbackend.repository.ReasonRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
