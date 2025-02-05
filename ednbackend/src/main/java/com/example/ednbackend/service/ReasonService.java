@@ -22,13 +22,13 @@ public class ReasonService {
 
     //Method to check if reason exist
     public boolean isReasonExists(String message){
-        Optional<Reason> reason = reasonRepository.findByMessage(mesage);
+        Optional<Reason> reason = reasonRepository.findByMessage(message);
         return reason.isPresent();
     }
 
 
      // Method to save a new reason
-     public Bank saveReason(Reason reason) {  // Save method returning the saved entity
+     public Reason saveReason(Reason reason) {  // Save method returning the saved entity
         return reasonRepository.save(reason);
     }
 
