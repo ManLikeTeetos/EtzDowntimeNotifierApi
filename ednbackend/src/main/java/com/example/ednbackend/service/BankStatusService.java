@@ -71,6 +71,11 @@ public class BankStatusService {
         return bankStatusRepository.findByBanknameAndDateCreatedBetween(bankname, startDate, endDate);
     }
 
+    // Get bank status updates bydate range
+    public List<BankStatus> getBankStatusesByOnlyDateRange(LocalDateTime startDate, LocalDateTime endDate) {
+        return bankStatusRepository.findByDateCreatedBetween(startDate, endDate);
+    }
+
     // Delete a bank status entry by ID
     public void deleteBankStatus(Long id) {
         bankStatusRepository.deleteById(id);

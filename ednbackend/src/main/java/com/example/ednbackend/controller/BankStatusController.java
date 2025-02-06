@@ -44,6 +44,16 @@ public class BankStatusController {
         return bankStatusService.getBankStatusesByDateRange(bankname, start, end);
     }
 
+   //Get all bank just by date
+    @GetMapping("/by-date")
+    public List<BankStatus> getBankStatusesByDateRange(
+            @RequestParam String startDate,
+            @RequestParam String endDate) {
+        LocalDateTime start = LocalDateTime.parse(startDate);
+        LocalDateTime end = LocalDateTime.parse(endDate);
+        return bankStatusService.getBankStatusesByOnlyDateRange(start, end);
+    }  
+
 @GetMapping("/{bankname}/latest")
 public BankStatus getLatestBankStatus(@PathVariable String bankname) {
     LocalDate today = LocalDate.now();
