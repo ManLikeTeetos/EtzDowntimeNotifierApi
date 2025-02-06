@@ -16,6 +16,9 @@ public class BankStatus {
     private String bankname;
 
     @Column(nullable = false)
+    private String type;
+
+    @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     private LocalTime downtime;
 
@@ -42,6 +45,9 @@ public class BankStatus {
 
     public String getBankname() { return bankname; }
     public void setBankname(String bankname) { this.bankname = bankname; }
+
+    public String getType() { return type; }
+    public void setType(String type) { this.type = type; }
 
     public LocalTime getDowntime() { return downtime; }
     public void setDowntime(LocalTime downtime) { this.downtime = downtime; }

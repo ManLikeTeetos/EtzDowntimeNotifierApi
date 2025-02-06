@@ -8,6 +8,7 @@ import java.time.LocalTime;
 @Setter
 public class BankStatusRequest {
     private String bankname;
+    private String type;
     private LocalTime downtime;
     private LocalTime uptime;
     private String status;

@@ -39,6 +39,7 @@ public class BankStatusService {
             // Otherwise, create a new entry
             BankStatus newStatus = new BankStatus();
             newStatus.setBankname(request.getBankname());
+            newStatus.setType(request.getType());
             newStatus.setDowntime(request.getDowntime());
             newStatus.setUptime(request.getUptime() != null ? request.getUptime() : LocalTime.of(0, 0)); // Default uptime to 00:00 if not provided
             newStatus.setStatus(request.getStatus());
