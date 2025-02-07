@@ -31,8 +31,6 @@ public class BankStatusService {
             BankStatus bankStatus = existingStatus.get();
             // Preserve the downtime and update the uptime
             bankStatus.setUptime(request.getUptime());
-            bankStatus.setStatus(request.getStatus());
-            bankStatus.setReason(request.getReason());
             bankStatus.setResolution(request.getResolution());
             return bankStatusRepository.save(bankStatus);
         } else {
