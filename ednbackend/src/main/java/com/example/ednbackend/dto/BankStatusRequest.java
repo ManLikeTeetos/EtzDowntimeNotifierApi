@@ -13,5 +13,6 @@ public class BankStatusRequest {
     private LocalTime uptime;
     private String status;
     private String reason;
+    private String username;
     private String resolution;
 }
