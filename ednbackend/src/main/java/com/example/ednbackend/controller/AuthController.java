@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.example.ednbackend.models.User;
 import com.example.ednbackend.dto.LoginRequest;
 import com.example.ednbackend.dto.RegisterUserRequest;
+import com.example.ednbackend.dto.UserResponse;
 import com.example.ednbackend.service.UserService;
 import com.example.ednbackend.dto.ResponseMessage;  // New Response DTO
 import org.springframework.http.ResponseEntity;
@@ -34,15 +35,23 @@ public class AuthController {
 
    // Sign In Endpoint
    @PostMapping("/signin")
-   public ResponseEntity<ResponseMessage> signIn(@RequestBody LoginRequest request) {
-       boolean authenticated = userService.authenticate(request.getUsername(), request.getEmail(), request.getPassword());
-       if (authenticated) {
-           return ResponseEntity.ok(new ResponseMessage("Login Successful"));
-       } else {
-           return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                                .body(new ResponseMessage("Invalid Credentials"));
-       }
-   }
+   public ResponseEntity<?> signIn(@RequestBody LoginRequest request) {
+    boolean authenticated = userService.authenticate(request.getUsername(), request.getPassword());
+    if (authenticated) {
+        // Fetch user details after successful authentication
+        User user = userService.findByUsername(request.getUsername());
+        
+        if (user != null) {
+            return ResponseEntity.ok(new UserResponse(user, "Login Successful"));
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                                 .body(new ResponseMessage("User not found"));
+        }
+    } else {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                             .body(new ResponseMessage("Invalid Credentials"));
+    }
+}
 
    // **GET all users (Only Admins)**
    @GetMapping("/users")

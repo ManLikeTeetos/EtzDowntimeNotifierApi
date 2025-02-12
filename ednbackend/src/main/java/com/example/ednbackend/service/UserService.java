@@ -21,9 +21,9 @@ public class UserService {
 
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public boolean authenticate(String username, String email, String password) {
+    public boolean authenticate(String username,  String password) {
         Optional<User> user = userRepository.findByUsername(username);
-        if (user.isPresent() && user.get().getEmail().equals(email)) {  // ✅ Fixed method call
+        if (user.isPresent()) {  // ✅ Fixed method call
             return passwordEncoder.matches(password, user.get().getPassword());
         }
         return false;
