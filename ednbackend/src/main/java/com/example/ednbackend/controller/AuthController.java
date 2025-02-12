@@ -1,11 +1,16 @@
 package com.example.ednbackend.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import com.example.ednbackend.models.User;
 import com.example.ednbackend.dto.LoginRequest;
+import com.example.ednbackend.dto.RegisterUserRequest;
 import com.example.ednbackend.service.UserService;
 import com.example.ednbackend.dto.ResponseMessage;  // New Response DTO
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 //@CrossOrigin(origins = "https://reimagined-spork-954jr96v4ggcpqrg-3000.app.github.dev") // Enable CORS for this controller
@@ -17,23 +22,37 @@ public class AuthController {
 
     // Registration Endpoint
     @PostMapping("/register")
-    public ResponseMessage register(@RequestBody LoginRequest request) {
-        boolean registered = userService.registerUser(request.getEmail(), request.getPassword());
+    public ResponseEntity<ResponseMessage> register(@RequestBody RegisterUserRequest request) {
+        boolean registered = userService.registerUser(request);
         if (registered) {
-            return new ResponseMessage("Registration Successful");
+            return ResponseEntity.ok( new ResponseMessage("Registration Successful"));
         } else {
-            return new ResponseMessage("User Already Exist");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+            .body( new ResponseMessage("User Already Exist"));
         }
     }
 
-    // Sign In Endpoint
-    @PostMapping("/signin")
-    public ResponseMessage signIn(@RequestBody LoginRequest request) {
-        boolean authenticated = userService.authenticate(request.getEmail(), request.getPassword());
-        if (authenticated) {
-            return new ResponseMessage("Login Successful");
-        } else {
-            return new ResponseMessage("Invalid Credentials");
-        }
-    }
+   // Sign In Endpoint
+   @PostMapping("/signin")
+   public ResponseEntity<ResponseMessage> signIn(@RequestBody LoginRequest request) {
+       boolean authenticated = userService.authenticate(request.getUsername(), request.getEmail(), request.getPassword());
+       if (authenticated) {
+           return ResponseEntity.ok(new ResponseMessage("Login Successful"));
+       } else {
+           return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                                .body(new ResponseMessage("Invalid Credentials"));
+       }
+   }
+
+   // **GET all users (Only Admins)**
+   @GetMapping("/users")
+   public ResponseEntity<?> getAllUsers(@RequestParam String adminUsername) {
+       User adminUser = userService.findByUsername(adminUsername);
+       if (adminUser == null || !adminUser.isAdmin()) {
+           return ResponseEntity.status(403).body(new ResponseMessage("Access Denied: Admins only"));
+       }
+       
+       List<User> users = userService.getAllUsers();
+       return ResponseEntity.ok(users);
+   }
 }

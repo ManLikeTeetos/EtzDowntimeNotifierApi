@@ -32,17 +32,24 @@ public class BankStatusService {
             // Preserve the downtime and update the uptime
             bankStatus.setUptime(request.getUptime());
             bankStatus.setResolution(request.getResolution());
+            bankStatus.setUsername(request.getUsername());
+
             return bankStatusRepository.save(bankStatus);
         } else {
             // Otherwise, create a new entry
             BankStatus newStatus = new BankStatus();
             newStatus.setBankname(request.getBankname());
             newStatus.setType(request.getType());
+            if(request.getDowntime() != null){
             newStatus.setDowntime(request.getDowntime());
+        } else {
+            newStatus.setDowntime(LocalTime.MIDNIGHT); 
+        }
             newStatus.setUptime(request.getUptime() != null ? request.getUptime() : LocalTime.of(0, 0)); // Default uptime to 00:00 if not provided
             newStatus.setStatus(request.getStatus());
             newStatus.setReason(request.getReason());
             newStatus.setResolution(request.getResolution());
+            newStatus.setUsername(request.getUsername());
             return bankStatusRepository.save(newStatus);
         }
     }

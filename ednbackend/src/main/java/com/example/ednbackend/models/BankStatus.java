@@ -35,6 +35,9 @@ public class BankStatus {
     @Column(nullable = false)
     private String resolution;
 
+    @Column(nullable = false)
+    private String username;
+
     @Column(nullable = false, updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateCreated = LocalDateTime.now();
@@ -60,6 +63,10 @@ public class BankStatus {
 
     public String getReason() { return reason; }
     public void setReason(String reason) { this.reason = reason; }
+
+
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
 
     public String getResolution() { return resolution; }
     public void setResolution(String resolution) { this.resolution = resolution; }
